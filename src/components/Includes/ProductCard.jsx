@@ -25,7 +25,7 @@ const ProductCard = ({
 
           <div className="imageborder">
             {/* <img className="img-fluid" loading="lazy"  src={img} alt="image" /> */}
-            <ImageLoader src={null} link={link} />
+            <ImageLoader src={img} link={link} />
           </div>
           <Tooltip arrow title={isAddedWishList ? "Remove from WishList" : "Add to Wishlist"} placement="right-start">
             <Checkbox

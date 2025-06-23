@@ -16,7 +16,7 @@ const MenuNav = () => {
           <Logo />
           <ul className="bottom-nav-links d-lg-flex d-md-none d-sm-none m-0 d-none">
             <li className={location.pathname === "/home" ? "active" : ""}>
-              <Link to="/">Home</Link>
+              <Link to="/home">Home</Link>
             </li>
             <li className="dropdown-center">
               <Link

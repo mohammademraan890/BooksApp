@@ -1,5 +1,4 @@
-import { useContext, useEffect, useState } from "react"
-import { AppContext } from "../../context/AppContext"
+import { useEffect } from "react"
 import Heading1 from "../Includes/Heading1"
 import axios from "axios"
 

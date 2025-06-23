@@ -1,4 +1,4 @@
-import { createContext, useEffect, useReducer } from "react";
+import { createContext, useReducer } from "react";
 import secureLocalStorage from "react-secure-storage";
 import { toast } from "react-toastify";
 import { BooksArr } from "../Data";
@@ -88,8 +88,7 @@ const AppContextProvider = ({ children }) => {
         secureLocalStorage.setItem("cartData", cartInitData);
         return { ...State, cartData: cartInitData, totalPrice };
       }
-    }
-    else if (action?.type === "removeFromCart") {
+    } else if (action?.type === "removeFromCart") {
       const targetProductTitle = action?.productTitle;
       cartInitData = cartInitData.filter(
         (item) => item?.title !== targetProductTitle
@@ -154,15 +153,13 @@ const AppContextProvider = ({ children }) => {
       }
       secureLocalStorage?.setItem("wishListData", wishlistInitData);
       return { ...State, wishListData: wishlistInitData };
-    }
-    else if (action?.type === "addProducts") {
+    } else if (action?.type === "addProducts") {
       const newProductData = action.newProduct
       const id = booksInitData.length + 1;
       booksInitData = [...booksInitData, { ...newProductData, id }]
       secureLocalStorage.setItem("BooksArr", booksInitData)
       return { ...State, AllBooks: booksInitData }
-    }
-    else if (action?.type === "LoginUser") {
+    } else if (action?.type === "LoginUser") {
       const encryptedLoginData = encryptData(action?.LoginData);
       localStorage?.setItem("LoginData", encryptedLoginData);
 
@@ -181,38 +178,14 @@ const AppContextProvider = ({ children }) => {
         ...State,
         LoginUserData: {},
       };
-    } else if (action.type === "UpdateOtherTabs") {
-      return {
-        ...State,
-        LoginUserData: action?.updatedLoginData,
-      };
-    }
+    } 
   }
-  // useEffect(() => {
-  //   console.log(secureLocalStorage.getItem("cartData"))
 
-  //   console.log(State)
-  // })
-  useEffect(() => {
-    const handleStorageChange = (event) => {
-      if (event?.key === "LoginData" && event?.newValue) {
-        const updatedLoginData = decryptData(event?.newValue);
-        dispatch({ type: "UpdateOtherTabs", updatedLoginData });
-      }
-      // console.log(event);
-    };
-    window.addEventListener("storage", handleStorageChange);
-    return () => {
-      window.removeEventListener("storage", handleStorageChange);
-    };
-  }, []);
   const contextValues = {
     State,
     dispatch,
   };
-  // useEffect(()=>{
-  //   console.log(State.AllBooks)
-  // },[State])
+
   return (
     <div>
       <AppContext.Provider value={contextValues}>

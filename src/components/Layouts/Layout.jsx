@@ -7,18 +7,19 @@ import Quotes from "../Quotes";
 import ClientSec from "../ClientSec";
 import { ToastContainer } from "react-toastify";
 import ArticlesSec from "../pages/ArticlesSec";
+import { useEffect, useLayoutEffect } from "react";
 
 const Layout = () => {
   const location = useLocation()
-  const AppData = localStorage?.getItem("LoginData");
-  // console.log(cardId.id)
-  if (!AppData) {
-    return <Navigate to="/" />;
-  }
 
- if(location.pathname=== "/Login" || location.pathname === "/signup" ){
-  return <Outlet/>
- }
+      const LoginData = localStorage?.getItem("LoginData");
+      if (!LoginData) {
+        if(location.pathname === "/signup" || location.pathname=== "/Login")
+        return <Navigate to="/" />;
+      }
+    // if(location.pathname=== "/Login" || location.pathname === "/signup" ){
+    //   return <Outlet/>
+    // }
   return (
     <div>
       

@@ -3,7 +3,7 @@ import "bootstrap/dist/css/bootstrap.css";
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 
-import { Suspense, useEffect, useState } from "react";
+import { Suspense, useEffect, useLayoutEffect, useState } from "react";
 import { RouterProvider } from "react-router-dom";
 import { routes } from "./Routing";
 import 'react-loading-skeleton/dist/skeleton.css';
@@ -11,9 +11,10 @@ import AppContextProvider from "./context/AppContext";
 import Loader from "./components/Loader";
 import { SkeletonTheme } from "react-loading-skeleton";
 const App = () => {
-  const [online, setOnline] = useState(navigator.onLine)
-  console.log(online)
-
+  const [online, setOnline] = useState(true)
+  // useLayoutEffect(()=>{
+  //   setOnline(navigator.onLine);
+  // },[])
   useEffect(() => {
     AOS.init({
       duration: 1000,
